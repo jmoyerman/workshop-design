@@ -10,9 +10,45 @@ plywood = 0.703;  // actual for 3/4 cabinet grade
 // Get walls defined
 leftWall = 96;
 backWall = 93;
-rightWall = 112; // TODO
-wallHeight = 98; // TODO
+rightWall = 114; 
+wallHeight = 37+81; 
 wallDepth = 1; // visual only
+windowWidth = 35; 
+windowHeight = 36.5; 
+windowOffsetLeft = 37;
+windowOffsetBottom = 37+13.125;
+windowFrameWidth = 4.25;
+windowFrameHeight = 4.25;
+windowFrameDepth = .5;
+
+// workbench
+leftLength = 69;
+rightLength = 96;
+bottomShelf=9;
+topShelf=37;
+
+// studs
+studHeight= 0; // 14 from top of wall, 18.5 from bench
+studOneLeft=32;
+studTwoLeft=55;
+studThreeLeft=55+22;
+
+// outlet drywall
+// offset left: 61
+// offset bottom 7
+
+//outlet block wall
+outletOffsetLeft=18;
+outletOffsetBottom=8; // from workbench
+// two gang box? 4.5x4.5
+// depth 2.5
+
+
+sinkHeight=33.5;
+sinkDepth=24;
+sinkWidth=20;
+sinkOffsetLeft=8; // from corner to edge of sink
+
 
 // French Cleat Design
 cleatHeight = 4;  // TODO
@@ -45,15 +81,22 @@ module dustCollection() {
     // TODO side supports
     // TODO measurements
     // TODO actual vacuum
+     vacHeight = 23; //without legs 20.5
+     vacRad = 13.5/2; // handles: 15/2
+     vacBucketHeight = 15;
+     vacAboveBUcketSquare = 0; // 5x7
+     vacHoseHeight = 13; // to floor bottom of 2.5" hose
+     
     
     color("blue") {
-    bucketRadius = 6; // TODO
-    bucketHeight = 15; // TODO
+    bucketRadius = 6; // 6.25 at ridge
+    bucketHeight = 14.5;
     
-    deputyRadTop = 5; // TODO
-    deputyRadBottom = 2; // TODO
-    deputyHeight = 12; // TODO
-    deputyPipeRad = 1; // TODO
+    deputyRadTop = 6.5/2; // TODO
+    deputyRadBottom = 3.5/2; // TODO
+    deputyHeight = 11; // TODO
+    deputyHoseTop = 2.5;
+    deputyPipeRad = 1.25; // TODO
     
     $fa = .5;
     $fs = .5;
