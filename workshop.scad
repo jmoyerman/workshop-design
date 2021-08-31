@@ -1,41 +1,51 @@
+// Workshop Design Experiments
+// 8' x 8' wood shop with existing utility sink
+
 // Material Thicknesses
 twoBy = 1.5;
 fourBy = 3.5;
-thinPlywood = 5/25.4;
-plywood = 0.703;
+thinPlywood = 5/25.4;  // 5mm 
+plywood = 0.703;  // actual for 3/4 cabinet grade
 
 // Get walls defined
 leftWall = 96;
 backWall = 93;
 rightWall = 112; // TODO
 wallHeight = 98; // TODO
-wallDepth = 1;
+wallDepth = 1; // visual only
 
+// French Cleat Design
 cleatHeight = 4;  // TODO
 cleatThickness = plywood;  // TODO
 
+// Workbench
 existingHeight = 38; // TODO
 
-echo("Material", "Part", "Width", "Height", "x");
 
-color("green") 
-translate([20,-140,0])
-cube([46,31,38]);
+
+
+echo("Material", "Part", "Width", "Height", "Z");
 
 studs();
 sink();
 existingWorkbench();
 frenchCleat();
-
 dustCollection();
+tableSaw();
 walls();
 
-
+module tableSaw() {
+    color("green") 
+    translate([20,-140,0])
+    cube([46,31,38]);
+}
 module dustCollection() {
     // TODO add cleats
     // TODO bucket support
     // TODO side supports
     // TODO measurements
+    // TODO actual vacuum
+    
     color("blue") {
     bucketRadius = 6; // TODO
     bucketHeight = 15; // TODO
@@ -48,7 +58,9 @@ module dustCollection() {
     $fa = .5;
     $fs = .5;
     
-    translate([bucketRadius+2*plywood,-bucketRadius-4,60]) {
+    translate([backWall-bucketRadius-4,-bucketRadius-twoBy-2*plywood,60])
+    rotate([0,0,-90])
+        {
         translate([-bucketRadius-plywood,-bucketRadius-1,-plywood])
         plywood(plywood, bucketRadius*2+2, bucketHeight+deputyHeight+2);
         
@@ -240,7 +252,7 @@ module sink() {
 }
 
 module studs() {
-    
+    // TODO measure
     translate([0,-1.5,50]){
         translate([0,0,0])cube([3.5,1.5,40]);
         translate([32,0,0])cube([3.5,1.5,40]);
