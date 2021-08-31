@@ -10,7 +10,7 @@ sink();
 existingWorkbench();
 frenchCleat();
 dustCollection();
-tableSaw();
+//tableSaw();
 walls();
 
 module tableSaw() {
@@ -24,13 +24,13 @@ module dustCollection() {
     // TODO side supports
     // TODO measurements
     // TODO actual vacuum
-     vacHeight = 23; //without legs 20.5
-     vacRad = 13.5/2; // handles: 15/2
-     vacBucketHeight = 15;
-     vacAboveBUcketSquare = 0; // 5x7
-     vacHoseHeight = 13; // to floor bottom of 2.5" hose
-     
-    
+     vacHeight = 20.5; //with legs 23 without legs 20.5
+     vacRadius = 13.5/2; // handles: 15/2
+     vacBucketHeight = 12.5; // with legs: 15, without 12.5
+     vacSquareWidth = 5; // 5x7
+     vacSquareDepth = 7;
+     vacHoseHeight = 10.5; // 13/ 10.5 to floor bottom of 2.5" hose 
+     vacHoseRad = 1.25;
     color("blue") {
     bucketRadius = 6; // 6.25 at ridge
     bucketHeight = 14.5;
@@ -44,17 +44,33 @@ module dustCollection() {
     $fa = .5;
     $fs = .5;
     
-    translate([backWall-bucketRadius-4,-bucketRadius-twoBy-2*plywood,60])
-    rotate([0,0,-90])
-        {
+    translate([backWall-bucketRadius-2*vacRadius-4,-bucketRadius-twoBy-2*plywood,60])
+    rotate([0,0,-90]) {
+        // Back Piece
         translate([-bucketRadius-plywood,-bucketRadius-1,-plywood])
         plywood(plywood, bucketRadius*2+2, bucketHeight+deputyHeight+2);
-        
+        // Bottom Piece
         translate([-bucketRadius,-bucketRadius-1,-plywood])
         plywood(bucketRadius*2+2,bucketRadius*2+2,plywood);
-        
-        cylinder(bucketHeight,bucketRadius,bucketRadius);
+        // TODO side Left
+        // TODO side right
+        // TODO vaccuum bottom
+        // TODO vaccuum back
+//         translate([-bucketRadius, 0, vacHeight])
+ //       plywood(plywood, vacRadius*2+2, vacHeight);
             
+        
+        // Vaccuum
+        translate([vacRadius-bucketRadius, deputyRadTop + vacRadius+2, bucketHeight+deputyHeight+2*deputyHoseTop-vacHoseHeight]) rotate([0,0,-90]) {
+        cylinder(vacBucketHeight, vacRadius, vacRadius);
+        translate([-vacSquareWidth/2,-vacSquareDepth/2,vacBucketHeight]) cube([vacSquareWidth, vacSquareDepth, vacHeight - vacBucketHeight]);
+        translate([bucketRadius,0,10.5]) rotate([0,90,0]) cylinder(deputyHoseTop, deputyPipeRad, deputyPipeRad);
+        }
+        // temp move
+        // Bucket
+        cylinder(bucketHeight,bucketRadius,bucketRadius);
+        
+        // Deputy
         translate([0,0,bucketHeight]) {
             cylinder(deputyHeight+3,deputyPipeRad,deputyPipeRad);
             cylinder(deputyHeight,deputyRadBottom,deputyRadTop);
@@ -63,6 +79,7 @@ module dustCollection() {
             cylinder(4,deputyPipeRad,deputyPipeRad);
         }
    }
+  
     }
     
 }
