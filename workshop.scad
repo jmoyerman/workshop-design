@@ -10,11 +10,11 @@ sink();
 existingWorkbench();
 frenchCleat();
 dustCollection();
-//tableSaw();
+tableSaw();
 walls();
 
 module tableSaw() {
-    color("green") 
+    color("blue") 
     translate([20,-140,0])
     cube([46,31,38]);
 }
