@@ -53,5 +53,3 @@ cleatThickness = plywood;  // TODO
 
 // Workbench
 existingHeight = 38; // TODO
-
-
