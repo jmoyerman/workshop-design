@@ -98,6 +98,9 @@ module frenchCleat() {
                 translate([(twoBy),0, 3*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
                 translate([(twoBy),0, 4*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
                 translate([(twoBy),0, 5*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+                translate([(twoBy),0, 6*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+                translate([(twoBy),0, 7*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+
             }
         }
     }
@@ -114,6 +117,8 @@ module frenchCleat() {
                 translate([0,0, 3*(cleatHeight + cleatSpacing)]) cleat(backWall-plywood, cleatHeight, cleatThickness);
                 translate([0,0, 4*(cleatHeight + cleatSpacing)]) cleat(backWall-plywood, cleatHeight, cleatThickness);
                 translate([0,0, 5*(cleatHeight + cleatSpacing)]) cleat(backWall-plywood, cleatHeight, cleatThickness);
+                translate([0,0, 6*(cleatHeight + cleatSpacing)]) cleat(backWall-plywood, cleatHeight, cleatThickness);
+                translate([0,0, 7*(cleatHeight + cleatSpacing)]) cleat(backWall-plywood, cleatHeight, cleatThickness);
             }
         }
     }
