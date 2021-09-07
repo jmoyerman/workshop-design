@@ -5,11 +5,11 @@ include <dimensions.scad>
 
 echo("Material", "Part", "Width", "Height", "Z");
 
-studs();
-sink();
-existingWorkbench();
+//studs();
+//sink();
+//existingWorkbench();
 frenchCleat();
-dustCollection();
+//dustCollection();
 //tableSaw();
 walls();
 
@@ -86,26 +86,33 @@ module dustCollection() {
 
 module frenchCleat() {
     initialCleatHeight = 40;
-    cleatSpacing = 6;
+    cleatSpacing = 8;
     
     // Left wall
     color("red") {
-        translate([0,0,initialCleatHeight]) {
-            rotate([0,0,270]) {
-                translate([(twoBy), 0, 0]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
-                translate([(twoBy),0, 1*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
-                translate([(twoBy),0, 2*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
-                translate([(twoBy),0, 3*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
-                translate([(twoBy),0, 4*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
-                translate([(twoBy),0, 5*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
-                translate([(twoBy),0, 6*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
-                translate([(twoBy),0, 7*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+        translate([0,0,0]) {
+            rotate([0,0,0]) {
+                initialHeight = 2 * (cleatHeight+cleatSpacing);
+                for (i = [initialHeight:cleatHeight+cleatSpacing:wallHeight]) {
+               
+                translate([0, twoBy, i]) cleat(leftWall, cleatHeight, cleatThickness);
+                translate([50,50, i]) cleat(cleatHeight, backWall-plywood, cleatThickness);
 
+                /*translate([0, (twoBy), 1*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+                translate([0, (twoBy), 2*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+                translate([0, (twoBy), 3*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+                translate([0, (twoBy), 4*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+                translate([0, (twoBy), 5*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+                translate([0, (twoBy), 6*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+                translate([0, (twoBy), 7*(cleatHeight + cleatSpacing)]) cleat(leftWall-(twoBy), cleatHeight, cleatThickness);
+                    */
+                }
             }
         }
     }
     
     // Back wall
+    /*
     translate([0,-1*twoBy,existingHeight])
     plywood(backWall, plywood, wallHeight-existingHeight);
     color("red") {
@@ -122,6 +129,7 @@ module frenchCleat() {
             }
         }
     }
+    */
 }
 
 module cleat(w,h,t){
@@ -225,18 +233,18 @@ module walls() {
 
         // Walls
         // Block Walls
-    color("DarkSlateGray",0.25) {
+    color("DarkSlateGray",0.99) {
         //back wall
-        cube([backWall,wallDepth,wallHeight]);
+        cube([wallDepth,backWall,wallHeight]);
         // window wall
         difference() {
-            translate([backWall,-rightWall,0]) cube([wallDepth,rightWall,wallHeight]);
-            translate([backWall-1,-rightWall/2-16,60]) cube([wallDepth*2+1,32,32]);
+            translate([0,backWall,0]) cube([rightWall,wallDepth,wallHeight]);
+            translate([rightWall/2-16,backWall-1,60]) cube([32,wallDepth*2+1,32]);
         }
     }
         // Drywall Wall
-        color("white", 0.25) {
-        translate([-wallDepth,-leftWall,0]) cube([wallDepth,leftWall,wallHeight]);
+        color("white", 0.99) {
+        translate([0,0,0]) cube([leftWall,wallDepth,wallHeight]);
     }
 
 }
